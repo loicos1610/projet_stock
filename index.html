@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestionnaire de Stock</title>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+        <link rel="stylesheet" href="stock2.css">
+
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet"
+            href="https://cdn.rawgit.com/tonystar/float-label-css/v1.0.0/dist/float-label.min.css" />
+
+
+    </head>
+    <body>
+        <header class="header">
+            <div class="topbar">
+                <img src="image stock/cofa-logo-dark.png"
+                    alt="cognitive factory" width="160px" height="80px">
+
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <!--<div class="search">
+                    <label>
+                        <input type="text" placeholder="Rechercher">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>-->
+
+                <div class="user">
+                    <img src="image stock2/icons8-utilisateur-homme-48.png"
+                        alt="user icon">
+                </div>
+            </div>
+
+        </header>
+        <div class="container">
+            <div class="navigation" id="navigation">
+                <ul>
+                    <li>
+                        <a href="#" id="tableauDeBord" class="active">
+                            <span class="icon"><ion-icon
+                                    name="home-outline"></ion-icon></span>
+                            <span class="title">Tableau de bord</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="achats">
+                            <span class="icon"><ion-icon
+                                    name="cart-outline"></ion-icon></span>
+                            <span class="title">Achats</span>
+                        </a>
+                    </li>
+
+                    <!--<li>
+                        <a href="#">
+                            <span class="icon"><ion-icon name="cart-outline"></ion-icon></span>
+                            <span class="title">Entrées</span>
+                        </a>
+                    </li>-->
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon
+                                    name="cash-outline"></ion-icon></span>
+                            <span class="title">Portfeuille</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="Grahpique">
+                            <span class="icon"><ion-icon
+                                    name="stats-chart-outline"></ion-icon></span>
+                            <span class="title">Grahpique</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon
+                                    name="call-outline"></ion-icon></span>
+                            <span class="title">Contacts</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon
+                                    name="settings-outline"></ion-icon></span>
+                            <span class="title">Paramètre</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon"><ion-icon
+                                    name="log-out-outline"></ion-icon></span>
+                            <span class="title">Deconnexion</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main">
+
+                <div class="page-title">
+                    <p class="paragraphe">Tableau de bord</p><br>
+                    <span class="sous-paragraphe">/ Tableau de bord</span>
+                </div>
+
+                <div class="cardBox">
+                    <div class="card">
+                        <div>
+                            <div class="numbers">136</div>
+                            <div class="cardName">Ventes</div>
+                        </div>
+
+                        <div class="iconBx" style="color: rgb(240, 104, 104);">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">304.845 FCFA</div>
+                            <div class="cardName">Revenu journalier</div>
+                        </div>
+
+                        <div class="iconBx" style="color: green;">
+                            <ion-icon name="cash-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <!--<div class="card">
+                        <div>
+                            <div class="numbers">43%</div>
+                            <div class="cardName">Pourcentage</div>
+                        </div>
+
+                        <div class="iconBx">
+                            <ion-icon name="chatbubbles-outline"></ion-icon>
+                        </div>
+                    </div>-->
+
+                    <div class="card">
+                        <div>
+                            <div class="numbers">3.876.635 FCFA</div>
+                            <div class="cardName">Caisse</div>
+                        </div>
+
+                        <div class="iconBx" style="color: rgb(94, 94, 245);">
+                            <ion-icon name="wallet-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="recentOrders">
+                        <div class="cardHeader">
+                            <h2>Ventes récentes</h2>
+                            <a href="#" class="btn">Voir tout</a>
+                        </div><br>
+                        <div class="search">
+                            <label>
+                                <input type="text" placeholder="Rechercher"
+                                    id="myInput" onkeyup="myFunction()">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </label>
+                        </div>
+                        <br><br>
+
+                        <table id="myTable">
+                            <thead>
+
+                                <th>Désignation</th>
+                                <th>Prix(cfa)</th>
+                                <th>Statut</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>Savon de toilette</td>
+                                    <td>1200</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Crème fraiche</td>
+                                    <td>3000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Fromage en tranche</td>
+                                    <td>5500</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Gel douche</td>
+                                    <td>2200</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Pommes de terre</td>
+                                    <td>7000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Yaourt nature</td>
+                                    <td>800</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Biscuits</td>
+                                    <td>2000</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Beurre</td>
+                                    <td>1300</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Lait UHT</td>
+                                    <td>9000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Confiture</td>
+                                    <td>6500</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="details">
+                    <div class="recentOrders">
+                        <h2>Graphique de gestion des stocks</h2><br>
+
+                        <canvas id="myChart" width="500px"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="second" id="second" style="display: none;">
+                <div class="page-title">
+                    <p class="paragraphe">Achats</p><br>
+                    <span class="sous-paragraphe">/ Achats</span>
+                </div>
+                <div class="sub-container">
+
+                    <div class="total-amount-container">
+                         <div class="form-group">
+                            <label for="Ids">Product
+                                Id</label>
+                            <input type="number" class="form-control" id="Ids">
+                        </div>
+                        <div class="form-group">
+                            <label for="product">Product
+                                Name</label>
+                            <input type="text" class="form-control"
+                                id="product">
+                        </div>
+                        <div class="form-group">
+                            <label for="prc">Price</label>
+                            <input type="number" class="form-control" id="prc">
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Quantity</label>
+                            <input type="number" class="form-control" id="qty"
+                                onchange="calculate()">
+                        </div>
+                        <div class="form-group">
+                            <label for="amnt">Amount</label>
+                            <input type="number" class="form-control" id="amnt"
+                                disabled>
+                        </div>
+                        <button type="button"
+                            class="submit"
+                            onclick="addData()">Validez</button> 
+
+                        <!-- <button class="buton" id="mybtn">Effectuez une
+                            vente</button><br><br>
+                        <p class="hide error" id="erreur-budget">
+                            La valeur ne peut pas être vide ou négative
+                        </p>
+                        <div class="input-group">
+                            <input
+                                type="number"
+                                id="montant-total" />
+                            <label for="montant-total">Montant recu</label>
+                        </div>
+                        <button class="submit"
+                            id="bouton-montant-total">Validez</button> -->
+                    </div>
+
+                    <!--<div class="output-container flex-space">
+                    <div>
+                        <p>Créance</p>
+                        <span id="montant">0</span>
+                    </div>
+                    <div>
+                        <p>Dépenses</p>
+                        <span id="valeur-depenses">0</span>
+                    </div>
+                    <div>
+                        <p>Réliquat</p>
+                        <span id="montant-solde">0</span>
+                    </div>-->
+
+                    <div class="list" id="list">
+
+                        <div class="liste" id="liste">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img
+                                            src="image stock/cofa-logo-dark.png"
+                                            alt="logo" width="110px"
+                                            height="50px">
+                                    </td>
+
+                                    <td style="width: 15%;"></td>
+                                    <td>N_Facture : FSB23D</td>
+                                    <td style="width: 15%;"></td>
+                                    <td style="font-size: 13px;"> Avenue
+                                        GNASSINGBE Eyadema <br>
+                                        Tél: +228 90909090 <br>
+                                        Email: cofact@gmail.com <br>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br><br>
+                            <table>
+                                <tr>
+                                    <td>Caissier :</td>
+                                    <td>AGBANLOLO</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td>Réference :</td>
+                                    <td>C987650</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Nom Client :</td>
+                                    <td>***********</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td>Téléphone :</td>
+                                    <td>***********</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Garantie :</td>
+                                    <td>12h maximum</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <br><br>
+                            <table class="table">
+                                <thead id="tablehead">
+                                    <tr>
+                                        <th id="Ids">&nbsp;&nbsp;Id</th>
+                                        <th>&nbsp;&nbsp;Product Name</th>
+                                        <th>&nbsp;&nbsp;Price</th>
+                                        <th>&nbsp;&nbsp;Quantity</th>
+                                        <th>&nbsp;&nbsp;Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="newtr">
+
+                                </tbody>
+                            </table>
+                            <br><br>
+                            <table class="table">
+                                <tr>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%">Subtotal</th>
+                                    <th width="20%" id="subtotal-amount"></th>
+                                </tr>
+                                <tr>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%">Tax</th>
+                                    <th width="20%">50 Rs</th>
+                                </tr>
+                                <tr>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%"></th>
+                                    <th width="20%">Total Amount(RS)</th>
+                                    <th width="20%" id="total"></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <br><br>
+                        <button class="button"
+                            onclick="pagePrint(liste)"><ion-icon
+                                name="print-outline"></ion-icon>Imprimer</button>
+
+                         <!-- <h3>Liste des achats</h3><br> -->
+                        <!-- <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img
+                                            src="image stock/cofa-logo-dark.png"
+                                            alt="logo" width="110px"
+                                            height="50px">
+                                    </td>
+
+                                    <td style="width: 15%;"></td>
+                                    <td>N_Facture : FSB23D</td>
+                                    <td style="width: 15%;"></td>
+                                    <td style="font-size: 13px;"> Avenue
+                                        GNASSINGBE Eyadema <br>
+                                        Tél: +228 90909090 <br>
+                                        Email: cofact@gmail.com <br>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br><br>
+
+                            <table>
+                                <tr>
+                                    <td>Caissier :</td>
+                                    <td>AGBANLOLO</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td>Réference :</td>
+                                    <td>C987650</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Nom Client :</td>
+                                    <td>***********</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td>Téléphone :</td>
+                                    <td>***********</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Garantie :</td>
+                                    <td>12h maximum</td>
+                                    <td style="width: 30%;">&nbsp;&nbsp;</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <br><br>
+
+                            <table>
+                                <tr>
+                                    <td>Designation</td>
+                                    <td>Prix</td>
+                                    <td>Actions</td>
+                                </tr>
+
+                                <tr class="list-container" id="liste">
+
+                                </tr>
+                            </table>
+                        </div> 
+                        <div class="list-container" id="liste"></div>
+                        <br><br>
+                        <div class="output-container flex-space">
+                            <div>
+                                <p>Montant récu</p>
+                                <span id="montant">0</span>
+                            </div>
+                            <div>
+                                <p>Total</p>
+                                <span id="valeur-depenses">0</span>
+                            </div>
+                            <div>
+                                <p>Réliquat</p>
+                                <span id="montant-solde">0</span>
+                            </div>
+                        </div>
+                        <br>
+                        <p id="date"></p>
+                        <br>
+                        <button class="button"
+                            onclick="pagePrint(liste)"><ion-icon
+                                name="print-outline"></ion-icon>Imprimer</button> -->
+
+                    </div>
+
+                </div>
+
+                <!-- <div class="modale" id="modale">
+                    <div class="modale-bodie">
+                        <h4>Page d'impression</h4><br>
+                        <div class="list-container" id="liste"></div>
+                        <br><br>
+                        <div class="output-container flex-space">
+                            <div>
+                                <p class="p">Montant récu
+                                    <span class="span" id="montant">0</span></p>
+                                <br>
+                                <p class="p">Total
+                                    <span class="span"
+                                        id="valeur-depenses">0</span></p>
+                                <br>
+                                <p class="p">Réliquat
+                                    <span class="span"
+                                        id="montant-solde">0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="modal" id="modal">
+                    <div class="modal-bodie">
+                        <div class="user-amount-container">
+                            <br><h4>Saisir les differents produits ici</h4><br>
+                            <p class="hide error" id="erreur-titre-produit">
+                                Les valeurs ne peuvent pas être vides
+                            </p>
+                            <div class="input-group">
+                                <input class="entry"
+                                    type="text"
+                                    class="titre-produit"
+                                    id="titre-produit" />
+                                <label for="titre-produit">designation</label>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <input class="entry"
+                                    type="number"
+                                    id="montant-utilisateur" />
+                                <label for="montant-utilisateur">Montant</label>
+                            </div>
+                            <button class="submit"
+                                id="verifier-montant">Validez</button>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- <div class="output-container flex-space">
+                    <div>
+                        <p>Montant récu</p>
+                        <span id="montant">0</span>
+                    </div>
+                    <div>
+                        <p>Total</p>
+                        <span id="valeur-depenses">0</span>
+                    </div>
+                    <div>
+                        <p>Réliquat</p>
+                        <span id="montant-solde">0</span>
+                    </div>
+                </div> -->
+                <br><br><br>
+                <div class="details">
+                    <div class="recentOrders">
+                        <div class="cardHeader">
+                            <h2>Ventes récentes</h2>
+                            <a href="#" class="btn">Voir tout</a>
+                        </div><br>
+                        <!-- <div class="search">
+                            <label>
+                                <input type="text" placeholder="Rechercher"
+                                    id="myInput" onkeyup="myFunction()">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </label>
+                        </div> -->
+                        <br><br>
+
+                        <table id="myTable">
+                            <thead>
+
+                                <th>Désignation</th>
+                                <th>Prix(cfa)</th>
+                                <th>Statut</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>Savon de toilette</td>
+                                    <td>1200</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Crème fraiche</td>
+                                    <td>3000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Fromage en tranche</td>
+                                    <td>5500</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Gel douche</td>
+                                    <td>2200</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Pommes de terre</td>
+                                    <td>7000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Yaourt nature</td>
+                                    <td>800</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Biscuits</td>
+                                    <td>2000</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Beurre</td>
+                                    <td>1300</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Lait UHT</td>
+                                    <td>9000</td>
+                                    <td><span
+                                            class="statut-vendu">Vendu</span></td>
+                                </tr>
+                                <tr>
+
+                                    <td>Confiture</td>
+                                    <td>6500</td>
+                                    <td><span
+                                            class="statut-annulé">Annulée</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="graphique" class="graphique" style="display: none;">
+                <div class="details">
+                    <div class="recentOrders">
+                        <h2>Graphique de gestion des stocks</h2><br>
+
+                        <canvas
+                            id="Chart"
+                            style="width:100%; max-width:600px; height:500px;">
+                        </canvas>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="stock2.js"></script>
+
+        <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule
+            src="https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js">
+        </script>
+
+
+        <script>
+            function pagePrint(liste){
+  var printdata = document.getElementById("liste");
+  newwin = window.open("");
+  newwin.document.write(printdata.outerHTML);
+  newwin.print();
+  newwin.close();
+}
+        </script>
+    </body>
+</html>
